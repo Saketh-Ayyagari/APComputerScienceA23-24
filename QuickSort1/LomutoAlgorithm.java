@@ -26,11 +26,8 @@ public class LomutoAlgorithm{
 	static void partition(int a[], int m, int h){ //sorts all elements between the lower bound m and upper bound h
 		int pivot = m; //index of pivot element
 		int r = m + 1;
-		if (h - m + 1 < 2){
-			return;
-		}
-		else{
-			while (r < h){
+		if (h - m + 1 > 2){
+			while (r < h-1){
 				if (a[r] < a[pivot]){
 					m+=1;
 					exchange(a, m, r);
@@ -40,9 +37,9 @@ public class LomutoAlgorithm{
 		}
 		exchange(a, pivot, m);
 		partition(a, 0, pivot);
-		partition(a, pivot + 1, h);
+		partition(a, pivot+1, h-1);
 	}
-	static void sort(int arr[]){ //sorts the entire array
+	public static void sort(int arr[]){ //sorts the entire array
 		partition(arr, 0, arr.length);
 	}
 	public static void main(String[] args) {
