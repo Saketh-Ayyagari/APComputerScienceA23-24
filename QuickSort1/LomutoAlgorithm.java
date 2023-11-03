@@ -4,8 +4,8 @@ import java.util.Scanner;
 Saketh Ayyagari, 3nov2023
 Implementation of QuickSort using Lomuto's Partitioning Scheme
 */
-public class QS_Optimization1{
-	static String[] getData(){ 
+public class LomutoAlgorithm{
+	static String[] getData(){ //takes input of 
 		Scanner sc = new Scanner(System.in);
 		String[] temp = new String[1000];
 		int x = 0;
@@ -20,13 +20,13 @@ public class QS_Optimization1{
 		return output;
 	}
 	public static void partition(String a[], int l, int h){ 
-		//returns the index at which the pivot is moved to in the unsorted array
+		//partitions the array given a lower bound l (which is also the pivot) and the upper bound r. 
 		if (h - l > 0){
 			String temp = ""; //temporary variable used for exchanging elements
 			int m = l; //keeps track of the element being swapped when it is less than the pivot 
 			int r = l + 1;
 		
-			while (r <= h){ //r index traverses up until the upper bound
+			while (r <= h){ //r index traverses up until h
 				if (a[r].compareTo(a[l]) < 0){
 					m+=1;
 					//does the exchange of elements
