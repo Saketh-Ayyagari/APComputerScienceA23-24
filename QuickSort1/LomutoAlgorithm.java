@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 /*
 Saketh Ayyagari
-Implementation of QuickSort using Lomuto's Partition
+Implementation of QuickSort using Lomuto's Partitioning Scheme
 */
 public class LomutoAlgorithm{
 	static String[] getData(){ 
@@ -20,10 +20,10 @@ public class LomutoAlgorithm{
 		return output;
 	}
 	public static int partition(String a[], int l, int h){ 
-		//sorts all elements between the lower bound m and upper bound h inclusive
+		//returns the index at which the pivot is moved to in the unsorted array
 		
 		String temp = ""; //temporary variable used for exchanging elements
-		int m = l; //counter that keeps track of the index being swapped
+		int m = l; //keeps track of the element being swapped when it is less than the pivot
 		int pivot = l; 
 		int r = l + 1;
 	
@@ -44,7 +44,7 @@ public class LomutoAlgorithm{
 		
 		return m;
 	}
-	public static void qSort (String a[], int l, int h){
+	public static void qSort (String a[], int l, int h){ //partitions the array into two halves, then "sorts" each one individually
 		if (l <= h){ // is the size of the subarray at least 1?
 			int pivot = partition(a, l, h);
 			qSort(a, l, pivot-1); //partition for lower half
