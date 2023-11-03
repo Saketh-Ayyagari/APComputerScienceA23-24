@@ -45,7 +45,7 @@ public class QS_Optimization1{
 			partition(a, m+1, h); //partitions upper half
 		}
 	}
-	public static void sort (String a[], int l, int h){ //sorts entire array
+	public static void sort (String a[], int l, int h){ //partitions the array into two halves, then "sorts" each one individually
 		partition(a, 0, a.length-1);
 	}
 	public static void printData(String[] a){
