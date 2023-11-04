@@ -8,7 +8,7 @@ Sorting a list of String with Insertion Sort Algorithm
 public class InsertSort1{
 	static int counter = 0; //counts the number of comparisons that occur in the sorting algorithm
 	static String[] getData(){ //returns an array of the input 
-		Scanner sc = new Scanner(System.in);
+	Scanner sc = new Scanner(System.in);
         String[] array = new String[1000];
         int x = 0;
         while(sc.hasNextLine()){
