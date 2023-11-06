@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.Scanner;
 /*
-Saketh Ayyagari, 3nov2023
-Implementation of QuickSort using Lomuto's Partitioning Scheme
+Saketh Ayyagari, 6nov2023
+Implementation of QuickSort using Lomuto Partition
 */
 public class LomutoAlgorithm{
 	static String[] getData(){ 
@@ -20,15 +20,17 @@ public class LomutoAlgorithm{
 		return output;
 	}
 	public static void partition(String a[], int l, int h){ 
-		//sorts the array from the lower bound l (which doubles as the pivot) and the upper bound h inclusive
+		//sorts the subarray from the lower bound l (which is also the pivot) and the upper bound h
 		if (h - l > 0){
-			String temp = ""; //temporary variable used for exchanging elements
-			int m = l; //keeps track of the element being swapped when it is less than the pivot 
+			//is the size of the subarray greater than 1?
+			String temp = ""; 
+			int m = l; //keeps track of element being exchanged when we get to one less than the pivot 
 			int r = l + 1;
 			while (r <= h){ //r index traverses up until the upper bound
-				if (a[r].compareTo(a[l]) < 0){
+				if (a[r].compareTo(a[l]) < 0){ 
+				//if the current element is lexicographically less than the pivot
 					m+=1;
-					//does the exchange of elements
+					//exchange of elements
 					temp = a[m];
 					a[m] = a[r];
 					a[r] = temp;	
@@ -39,22 +41,23 @@ public class LomutoAlgorithm{
 			temp = a[l];
 			a[l] = a[m];
 			a[m] = temp;
-			
 			partition(a, l, m-1); //partitions lower half
 			partition(a, m+1, h); //partitions upper half
 		}
 	}
-	public static void sort (String a[], int l, int h){ //sorts entire array
+	public static void sort (String a[]){ //sorts the entire array
 		partition(a, 0, a.length-1);
 	}
 	public static void printData(String[] a){
-		for (int i = 0; i < a.length; i+=1){
+		int i = 0;
+		while (i < a.length){
 			System.out.println(a[i]);
+			i+=1;
 		}
 	}
 	public static void main(String[] args) {
 		String[] array = getData();
-		sort(array, 0, array.length-1);
+		sort(array);
 		printData(array);
 	}
 }

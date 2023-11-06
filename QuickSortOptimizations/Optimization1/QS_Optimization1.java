@@ -1,10 +1,12 @@
 import java.io.*;
 import java.util.Scanner;
+import java.lang.Math;
 /*
 Saketh Ayyagari, 3nov2023
-Implementation of QuickSort using Lomuto's Partitioning Scheme
+Optimizing QuickSort by using Math.random to generate a pseudorandom pivot
 */
 public class QS_Optimization1{
+	static int comparisons = 0;
 	static String[] getData(){ 
 		Scanner sc = new Scanner(System.in);
 		String[] temp = new String[1000];
@@ -22,13 +24,15 @@ public class QS_Optimization1{
 	public static void partition(String a[], int l, int h){ 
 		//returns the index at which the pivot is moved to in the unsorted array
 		if (h - l > 0){
+			//creating a pivot
+			int pivot = (Math.random() * (h - l))
 			String temp = ""; //temporary variable used for exchanging elements
 			int m = l; //keeps track of the element being swapped when it is less than the pivot 
 			int r = l + 1;
-		
 			while (r <= h){ //r index traverses up until the upper bound
 				if (a[r].compareTo(a[l]) < 0){
 					m+=1;
+					comparisons+=1;
 					//does the exchange of elements
 					temp = a[m];
 					a[m] = a[r];
@@ -45,17 +49,18 @@ public class QS_Optimization1{
 			partition(a, m+1, h); //partitions upper half
 		}
 	}
-	public static void sort (String a[], int l, int h){ //partitions the array into two halves, then "sorts" each one individually
+	public static void sort (String a[]){ //partitions the array into two halves, then "sorts" each one individually
 		partition(a, 0, a.length-1);
 	}
 	public static void printData(String[] a){
 		for (int i = 0; i < a.length; i+=1){
 			System.out.println(a[i]);
 		}
+		System.out.println("Number of comparisons: " + comparisons);
 	}
 	public static void main(String[] args) {
 		String[] array = getData();
-		sort(array, 0, array.length-1);
+		sort(array);
 		printData(array);
 	}
 }
