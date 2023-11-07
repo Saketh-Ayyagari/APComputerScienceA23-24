@@ -7,8 +7,8 @@ Optimizing QuickSort by using Math.random to generate a pseudorandom pivot
 */
 public class QS_Optimization1{
 	static int comparisons = 0;
-	static String[] getData(){ 
-		Scanner sc = new Scanner(System.in);
+	static String[] getData(String filename) throws FileNotFoundException{ 
+		Scanner sc = new Scanner(new File(filename));
 		String[] temp = new String[1000];
 		int x = 0;
 		while (sc.hasNextLine()){
@@ -25,12 +25,12 @@ public class QS_Optimization1{
 		//returns the index at which the pivot is moved to in the unsorted array
 		if (h - l > 0){
 			//creating a pivot
-			int pivot = (Math.random() * (h - l))
+			int pivot = l + (int)(Math.random() * (h - l));
 			String temp = ""; //temporary variable used for exchanging elements
 			int m = l; //keeps track of the element being swapped when it is less than the pivot 
-			int r = l + 1;
+			int r = l;
 			while (r <= h){ //r index traverses up until the upper bound
-				if (a[r].compareTo(a[l]) < 0){
+				if (a[r].compareTo(a[pivot]) < 0){
 					m+=1;
 					comparisons+=1;
 					//does the exchange of elements
@@ -41,8 +41,8 @@ public class QS_Optimization1{
 				r+=1;
 			}
 			//exchanges pivot with element at index m
-			temp = a[l];
-			a[l] = a[m];
+			temp = a[pivot];
+			a[pivot] = a[m];
 			a[m] = temp;
 			
 			partition(a, l, m-1); //partitions lower half
@@ -58,8 +58,8 @@ public class QS_Optimization1{
 		}
 		System.out.println("Number of comparisons: " + comparisons);
 	}
-	public static void main(String[] args) {
-		String[] array = getData();
+	public static void main(String[] args) throws FileNotFoundException{
+		String[] array = getData(args[0]);
 		sort(array);
 		printData(array);
 	}
