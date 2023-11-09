@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.lang.Math;
 /*
-Saketh Ayyagari, 3nov2023
+Saketh Ayyagari, 9nov2023
 Optimizing QuickSort by using Math.random to generate a pseudorandom pivot
 */
 public class QS_Optimization1{
