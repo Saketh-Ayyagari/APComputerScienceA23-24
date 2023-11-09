@@ -7,8 +7,8 @@ Optimizing QuickSort by using Math.random to generate a pseudorandom pivot
 */
 public class QS_Optimization1{
 	static int comparisons = 0;
-	static String[] getData(String filename) throws FileNotFoundException{ 
-		Scanner sc = new Scanner(new File(filename));
+	static String[] getData() { 
+		Scanner sc = new Scanner(System.in);
 		String[] temp = new String[1000];
 		int x = 0;
 		while (sc.hasNextLine()){
@@ -22,17 +22,21 @@ public class QS_Optimization1{
 		return output;
 	}
 	public static void partition(String a[], int l, int h){ 
-		//returns the index at which the pivot is moved to in the unsorted array
 		if (h - l > 0){
-			//creating a pivot using Math.random()
+			//generating a pseudorandom pivot using Math.random()
 			int pivot = l + (int)(Math.random() * (h - l));
-			String temp = ""; //temporary variable used for exchanging elements
+			String temp = "";
+			//exchanges the pivot element with the current element at index l
+			temp = a[pivot];
+			a[pivot] = a[l];
+			a[l] = temp;
+
 			int m = l; //keeps track of the element being swapped when it is less than the pivot 
-			int r = l;
+			int r = l+1;
 			while (r <= h){ //r index traverses up until the upper bound
-				if (a[r].compareTo(a[pivot]) < 0){
+				if (a[r].compareTo(a[l]) < 0){
 					m+=1;
-					comparisons+=1;
+					comparisons++;
 					//does the exchange of elements
 					temp = a[m];
 					a[m] = a[r];
@@ -41,12 +45,12 @@ public class QS_Optimization1{
 				r+=1;
 			}
 			//exchanges pivot with element at index m
-			temp = a[pivot];
-			a[pivot] = a[m];
+			temp = a[l];
+			a[l] = a[m];
 			a[m] = temp;
 			
-			partition(a, l, pivot-1); //partitions lower half
-			partition(a, pivot+1, h); //partitions upper half
+			partition(a, l, m-1); //partitions lower half (from index l to the exchanged )
+			partition(a, m+1, h); //partitions upper half
 		}
 	}
 	public static void sort (String a[]){ //partitions the array into two halves, then "sorts" each one individually
@@ -58,8 +62,8 @@ public class QS_Optimization1{
 		}
 		System.out.println("Number of comparisons: " + comparisons);
 	}
-	public static void main(String[] args) throws FileNotFoundException{
-		String[] array = getData(args[0]);
+	public static void main(String[] args){
+		String[] array = getData();
 		sort(array);
 		printData(array);
 	}
