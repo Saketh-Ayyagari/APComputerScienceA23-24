@@ -24,7 +24,7 @@ public class QS_Optimization1{
 	public static void partition(String a[], int l, int h){ 
 		//returns the index at which the pivot is moved to in the unsorted array
 		if (h - l > 0){
-			//creating a pivot
+			//creating a pivot using Math.random()
 			int pivot = l + (int)(Math.random() * (h - l));
 			String temp = ""; //temporary variable used for exchanging elements
 			int m = l; //keeps track of the element being swapped when it is less than the pivot 
@@ -45,8 +45,8 @@ public class QS_Optimization1{
 			a[pivot] = a[m];
 			a[m] = temp;
 			
-			partition(a, l, m-1); //partitions lower half
-			partition(a, m+1, h); //partitions upper half
+			partition(a, l, pivot-1); //partitions lower half
+			partition(a, pivot+1, h); //partitions upper half
 		}
 	}
 	public static void sort (String a[]){ //partitions the array into two halves, then "sorts" each one individually
