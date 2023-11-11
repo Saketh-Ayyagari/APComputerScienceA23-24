@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.lang.Math;
 /*
 Saketh Ayyagari, 9nov2023
-Optimizing QuickSort by switching to Insertion Sort when the subfile gets too small
+Optimizing QuickSort by switching to Insertion Sort when the subfile reaches a certain size
 */
 public class QS_Optimization3{
 	static int comparisons = 0;
@@ -27,10 +27,10 @@ public class QS_Optimization3{
 		while (boundary <= r){
 			int j = boundary; //goes through preceding elements to check if they're lexicographically greater than new element
 			String temp = a[boundary];
-			while (j >= l && a[j-1].compareTo(temp) > 0){ 
+			while (j > l && a[j-1].compareTo(temp) > 0){ 
 				//while j is greater than l and  preceding element is lexicographically smaller
 				a[j] = a[j-1];
-				j=-1;
+				j-=1;
 			}
 			a[j] = temp;
 			boundary+=1;
