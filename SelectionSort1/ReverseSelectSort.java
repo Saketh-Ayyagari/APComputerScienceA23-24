@@ -45,14 +45,10 @@ public class ReverseSelectSort{
         }
     }
     static void procedure(String[] a){ //prints all distinct values of the array
-        System.out.println(a[0]); //first element will always be unique
-        int j = 1;
+        int j = 0;
         while (j < a.length){
-            if (a[j].equals(a[j-1]) == false){ 
-                //prints the next element if the current element is distinct from the preceding element 
-                System.out.println(a[j]);
-            }
-            j+=1;
+        	System.out.println(a[j]);   
+        	j+=1;
         }
     }
 

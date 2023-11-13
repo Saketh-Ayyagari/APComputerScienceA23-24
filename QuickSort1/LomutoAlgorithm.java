@@ -5,6 +5,7 @@ Saketh Ayyagari, 6nov2023
 Implementation of QuickSort using Lomuto Partition
 */
 public class LomutoAlgorithm{
+	static int c = 0;
 	static String[] getData(){ 
 		Scanner sc = new Scanner(System.in);
 		String[] temp = new String[1000];
@@ -27,6 +28,7 @@ public class LomutoAlgorithm{
 			int m = l; //keeps track of element being exchanged when we get to one less than the pivot 
 			int r = l + 1;
 			while (r <= h){ //r index traverses up until the upper bound
+				c++;
 				if (a[r].compareTo(a[l]) < 0){ 
 				//if the current element is lexicographically less than the pivot
 					m+=1;
@@ -54,6 +56,7 @@ public class LomutoAlgorithm{
 			System.out.println(a[i]);
 			i+=1;
 		}
+		System.out.println("Number of Comparisons: " + c);
 	}
 	public static void main(String[] args) {
 		String[] array = getData();
