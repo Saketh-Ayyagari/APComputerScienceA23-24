@@ -12,7 +12,7 @@ public class Fibonacci{
 	}
 	public static void main(String[] args) {
 		int input = Integer.parseInt(args[0]);
-		//System.out.println("Fibonnaci Number: " + nthFibNum(input));
+		System.out.println("Fibonnaci Number: " + nthFibNum(input));
 		
 		System.out.println("Number of times method recurses: " + count);
 		return;

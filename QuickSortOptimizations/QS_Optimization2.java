@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.lang.Math;
 /*
-Saketh Ayyagari, 11nov2023
+Saketh Ayyagari, 16nov2023
 Optimizing QuickSort by selecting median of a subfile as a pivot
 */
 public class QS_Optimization2{
@@ -21,32 +21,46 @@ public class QS_Optimization2{
 		}
         return output;
     }
-    public static int choose_pivot (String a[], int l, int h){
-        int pivot = 0;
-		int x = (int)((h-l)/3); //separates the beginning, middle, and end elements
-		int first_element = l;
-		int second_element = l + x;
-		int third_element = l + (2*x);
-		if (first_element >= second_element && first_element >= third_element){
-			pivot = first_element;
-		}
-		else if (first_element <= second_element && second_element <= third_element){
-			pivot = second_element;
+    public static int choose_median (String a[], int low, int med, int high){
+		if (a[low].compareTo(a[med]) > 0){
+			if (a[med].compareTo(a[high]) > 0){
+				return med;
+			}
+			else if (a[low].compareTo(a[high]) < 0){
+				return low;
+			}
+			else{
+				return high;
+			}
 		}
 		else{
-			pivot = third_element;
+			if (a[med].compareTo(a[high]) < 0){
+				return med;
+			}
+			else if (a[low].compareTo(a[high]) < 0){
+				return high;
+			}
+			else{
+				return low;
+			}
 		}
-        return pivot;
     }
 	public static void partition(String a[], int l, int h){
 		if (h - l > 0){
 			String temp = "";
+			int med = (int)(h/2);
+			int pivot = choose_median(a, l, med, h);
+			//exchanging pivot with the first element
+			temp = a[pivot];
+			a[pivot] = a[l];
+			a[l] = temp;
+			
 			int m = l; //keeps track of the element being swapped when it is less than the pivot 
 			int r = l+1;
 			while (r <= h){ //r index traverses up until the upper bound
+				comparisons+=1;
 				if (a[r].compareTo(a[l]) < 0){
 					m+=1;
-					comparisons++;
 					//does the exchange of elements
 					temp = a[m];
 					a[m] = a[r];

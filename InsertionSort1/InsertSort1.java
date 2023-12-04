@@ -8,22 +8,22 @@ Sorting a list of String with Insertion Sort Algorithm
 public class InsertSort1{
 	static int counter = 0; //counts the number of comparisons that occur in the sorting algorithm
 	static String[] getData(){ //returns an array of the input 
-	Scanner sc = new Scanner(System.in);
-        String[] array = new String[1000];
-        int x = 0;
-        while(sc.hasNextLine()){
-             //reads input from a new line as long as the input has another line
-            array[x] = sc.nextLine();
-            x+=1;
-        }
-        String[] output = new String[x]; //new array has a more fixed size. 
-        int i = 0;
-        while (i < x){
-            output[i] = array[i];
-            i+=1;
-        }
-        return output;
-    }
+		Scanner sc = new Scanner(System.in);
+      String[] array = new String[1000];
+      int x = 0;
+      while(sc.hasNextLine()){
+         //reads input from a new line as long as the input has another line
+         array[x] = sc.nextLine();
+         x+=1;
+      }
+      String[] output = new String[x]; //new array has a more fixed size. 
+      int i = 0;
+      while (i < x){
+         output[i] = array[i];
+         i+=1;
+      }
+      return output;
+   }
 	static void insertionSort(String[] a){ //sorts the array in lexographical order 
 		int boundary = 1; //separates the sorted and unsorted subarrays
 		while (boundary < a.length){ 
