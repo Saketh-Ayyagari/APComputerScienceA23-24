@@ -23,7 +23,19 @@ public class QS_Optimization2{
     }
     public static int choose_pivot (String a[], int l, int h){
         int pivot = 0;
-
+		int x = (int)((h-l)/3); //separates the beginning, middle, and end elements
+		int first_element = l;
+		int second_element = l + x;
+		int third_element = l + (2*x);
+		if (first_element >= second_element && first_element >= third_element){
+			pivot = first_element;
+		}
+		else if (first_element <= second_element && second_element <= third_element){
+			pivot = second_element;
+		}
+		else{
+			pivot = third_element;
+		}
         return pivot;
     }
 	public static void partition(String a[], int l, int h){
