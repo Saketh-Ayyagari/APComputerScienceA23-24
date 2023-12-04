@@ -34,9 +34,9 @@ public class QS_Optimization1{
 			int m = l; //keeps track of the element being swapped when it is less than the pivot 
 			int r = l+1;
 			while (r <= h){ //r index traverses up until the upper bound
+				comparisons+=1;
 				if (a[r].compareTo(a[l]) < 0){
 					m+=1;
-					comparisons++;
 					//does the exchange of elements
 					temp = a[m];
 					a[m] = a[r];
