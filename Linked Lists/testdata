@@ -6,12 +6,16 @@ i ant
 i bat
 p
 c cat
-c cowi mouse
+c cow
+i mouse
 i horse
 i goat
 insert zebra
 p
-d catd goatd ebra
+x
+d cat
+d goat
+d zebra
 p
 c dog
 q
