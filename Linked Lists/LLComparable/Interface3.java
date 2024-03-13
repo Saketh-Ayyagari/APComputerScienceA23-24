@@ -1,7 +1,8 @@
 import java.io.*;
-import java.util.*;
+import java.util.Scanner;
+import java.util.Iterator;
 //Saketh Ayyagari
-//Interface for Ordered Insert of Nodes into a LinkedList
+//Interface for Generic LinkedList without print method
 public class Interface3{
    public static void main(String[] args){
       LLComparable<String> list = new LLComparable<String>();
@@ -24,7 +25,10 @@ public class Interface3{
                System.out.println(d + " inserted in list");
             }
             else if (operation == 'p'){ //printing the list
-               list.print();
+               Iterator<String> it = list.iterator();
+               while (it.hasNext()){
+                  System.out.println(it.next());
+               }
             }
             else if (operation == 'd'){ //deleting an element
                if (list.remove(d)){
@@ -45,6 +49,7 @@ public class Interface3{
          }
          command = sc.nextLine();
       }
+      sc.close();
       return;
    }
 }

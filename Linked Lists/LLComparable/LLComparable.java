@@ -1,7 +1,7 @@
-import java.io.*;
+import java.util.Iterator;
 //Saketh Ayyagari
-//LinkedList of Generic Type
-public class LLComparable<C extends Comparable<C>>{
+//LinkedList of Generic Type + Removed print method by using Iterator
+public class LLComparable<C extends Comparable<C>> implements Iterable<C>{
    private NodeComparable<C> head; //Node that refers to beginning of linked list
    public LLComparable(){ //Declares empty Linked List
       this.head = null;
@@ -13,20 +13,6 @@ public class LLComparable<C extends Comparable<C>>{
    public void push(C d)
    {//new "head" Node is assigned new "Node" object that has previous head assigned
       this.head = new NodeComparable<C>(d, this.head);
-   }
-   public void print()
-   { //prints out all Nodes of a LinkedList
-      NodeComparable<C> t = this.head;
-      while (t != null){
-         if (t.getNext() == null){
-            System.out.print(t.getData());
-         }
-         else{
-            System.out.print(t.getData() + "-->");
-         }
-         t=t.getNext();
-      }
-      System.out.println();
    }
    public boolean contains(C target){ //does a LinkedList contain a certain value?
       NodeComparable<C> t = this.head;
@@ -86,5 +72,21 @@ public class LLComparable<C extends Comparable<C>>{
          t.setNext(n);
       }
    }
-
+   public Iterator<C> iterator(){ //method to access iterator
+      return new LLIter<C>(this.head);
+   }
+   private class LLIter<E> implements Iterator<E>{ 
+      private NodeComparable<E> t;
+      public LLIter(NodeComparable<E> t){
+         this.t = t;
+      }
+      public boolean hasNext(){ //is there another Node in LinkedList?
+         return (this.t != null);
+      }
+      public E next(){ //returns the next Node of the LL
+         E d = this.t.getData();
+         this.t = this.t.getNext();
+         return d;
+      }
+   }
 }
