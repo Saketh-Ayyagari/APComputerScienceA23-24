@@ -25,10 +25,9 @@ public class WSPGraph extends WGraph{
    public Iterator<Character> iterator(){
       return new WSPIterator(this); 
    }
-   public void output(){ // returns output after running shortest path algorithm
+   public void output(){ // prints the shortest distance to each vertex and where it got from.
       Iterator<Character> spIt = this.iterator();
-      while (spIt.hasNext())
-      {
+      while (spIt.hasNext()){
          char output = spIt.next();
          if (start == output){
             System.out.println(output + " " + 0);

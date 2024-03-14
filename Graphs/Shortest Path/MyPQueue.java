@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.ArrayList;
 /* 
 Priority Queue Class
@@ -87,8 +86,8 @@ public class MyPQueue{
             else if (rightExists(index2) && !leftExists(index2)){ // if only the right child exists
                smallestChildIndex = (2 * index2)+1;
             }
-            else{ // if no children exist, the root is a leaf
-               break;
+            else{ // if no children exist, the vertex is a leaf, which means it is in the right place
+               return output;
             }
             if (heapList.get(smallestChildIndex) < heapList.get(index2)){
                // exchanges parent node with its smallest child
@@ -100,8 +99,8 @@ public class MyPQueue{
                vertices.set(index2, vertices.get(smallestChildIndex));
                vertices.set(smallestChildIndex, dummyChar);
             }
-            else{
-               break;
+            else{ // heap invariant is now maintained
+               return output;
             }
             index2 = smallestChildIndex; // new parent node becomes the child node            
          }  
