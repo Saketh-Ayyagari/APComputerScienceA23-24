@@ -1,4 +1,3 @@
-import java.io.*;
 // Queue Class
 public class MyQueue{
    private int size; 

@@ -32,7 +32,7 @@ public class WSPGraph extends WGraph{
          if (start == output){
             System.out.println(output + " " + 0);
          }
-         else{
+         else if (output != ' '){
             System.out.println(output + ": " + shortestDistances[output-'A'] + " via " + whereFrom[output-'A']);
          }
       }
@@ -60,6 +60,12 @@ public class WSPGraph extends WGraph{
       public Character next(){
          int d = p.getRootDistance();
          char output = p.dequeue();
+         while (visited[output-'A']){
+            if (p.isEmpty()){
+               return ' ';
+            }
+            output = p.dequeue();
+         }
          // finds neighbors of the root node
          ArrayList<Character> neighbors = this.wsp.adjacencies(output);
          // pushes unvisited neighbors into priority queue

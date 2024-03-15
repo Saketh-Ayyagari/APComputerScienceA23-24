@@ -19,7 +19,7 @@ public class WGraph implements Iterable<Character>{
 		ArrayList<Character> adjList = new ArrayList<Character>(); // contains characters adjacent to specific Node
 		for (int i=0; i<this.adj[node-'A'].length; i++){ // goes through specific row of matrix
 			char node2 = (char)(i+'A');
-			if (getWeight(node, node2) > 0){
+			if (getWeight(node, node2) > -1){
 				// adds Node to adjacency list if an edge exists between the two Nodes
 				adjList.add(node2);
 			}

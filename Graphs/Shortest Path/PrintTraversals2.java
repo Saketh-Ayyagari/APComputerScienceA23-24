@@ -27,7 +27,7 @@ public class PrintTraversals2{
 
    public static void main(String[] args) {
       getInput();
-      // Basic Graph Traversal Iterator
+      // Basic Graph Traversal 
       System.out.println("Basic Graph Traversal");
       WGraph wg = new WGraph(adjMatrix);
       Iterator<Character> wgIt = wg.iterator();
@@ -52,6 +52,7 @@ public class PrintTraversals2{
          System.out.print(wbfIt.next() + " ");
       }
       System.out.println();
+      // Shortest Path
       System.out.println("Shortest Path");
       WSPGraph wsp = new WSPGraph(start, adjMatrix);
       
