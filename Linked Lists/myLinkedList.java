@@ -1,7 +1,7 @@
 import java.io.*;
 //Saketh Ayyagari
 //Using Node class to create a Linked List class
-
+// NOTE: THIS HAS ORDERED INSERT
 public class myLinkedList 
 {
    private Node head; //Node that refers to beginning of linked list
@@ -74,25 +74,22 @@ public class myLinkedList
       }
       return false; //no Node contains the target
    }
-   public void insert(String d){
-      if (isEmpty() || this.head.getData().compareTo(d) > 0){
-         //new Node is the new head if LinkedList is empty or current data is less than that of head
-         this.head = new Node(d, this.head);
-      }
-      else{
-         Node t = this.head; //pointer that goes through LL
-         while (t.getNext() != null){
-            //goes through LinkedList until t reaches the Node before the current desired spot.
-            if (t.getNext().getData().compareTo(d) > 0){
-               Node n = new Node(d, t.getNext());
-               t.setNext(n);
-               return;
-            }
-            t = t.getNext();
-         }
-         //appends Node to the end of the list if t reaches end of list
-         Node n = new Node(d, null); 
-         t.setNext(n);
-      }
+   // Merge Sort methods
+   public void sort(){
+      this.head = recsort(this.head);
+   }  
+   private Node recsort(myLinkedList h){
+      Node t = split(h);
+      h = recsort(h);
+      t = recsort(t);
+      return merge(h, t);
+   }
+   private myLinkedList split(){
+
+      
+   }
+   private Node merge(myLinkedList h, myLinkedList t){
+
+      return this.head;
    }
 }
