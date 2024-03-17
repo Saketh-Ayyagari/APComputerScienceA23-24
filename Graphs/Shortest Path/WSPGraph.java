@@ -60,6 +60,8 @@ public class WSPGraph extends WGraph{
       public Character next(){
          int d = p.getRootDistance();
          char output = p.dequeue();
+         /*if the vertex at the top of the priority queue is visited, remove it. If the priority queue becomes empty, 
+         then we are done with the algorithm*/ 
          while (visited[output-'A']){
             if (p.isEmpty()){
                return ' ';
@@ -71,11 +73,11 @@ public class WSPGraph extends WGraph{
          // pushes unvisited neighbors into priority queue
          for (char c : neighbors){
             int distanceFromStart = d + wsp.getWeight(output, c);
-            /* if a neighbor is not visited and either has a shortestDistance of 0 or a distance smaller than the
+            /* if a neighbor either has a shortestDistance of 0 or a distance smaller than the
             * shortest distance in the array, add it to the priority queue and update whereFrom and shortestDistances
             * arrays..
             */
-            if (!visited[c-'A'] && (shortestDistances[c-'A'] == 0 || distanceFromStart < shortestDistances[c-'A']))
+            if ((shortestDistances[c-'A'] == 0 || distanceFromStart < shortestDistances[c-'A']))
             { 
                p.enqueue(c, distanceFromStart);
                shortestDistances[c-'A'] = distanceFromStart;
