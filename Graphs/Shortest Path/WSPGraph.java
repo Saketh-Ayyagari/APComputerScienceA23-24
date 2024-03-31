@@ -11,6 +11,9 @@ public class WSPGraph extends WGraph{
       super(adj);
       this.start = start;
       shortestDistances = new int[this.size()];
+      for (int i = 0; i < this.size(); i+=1){
+         shortestDistances[i] = -1;
+      }
       whereFrom = new Character[this.size()];      
    }
    public WSPGraph(char start, WGraph w){
@@ -32,7 +35,7 @@ public class WSPGraph extends WGraph{
          if (start == output){
             System.out.println(output + " " + 0);
          }
-         else if (output != ' '){
+         else{
             System.out.println(output + ": " + shortestDistances[output-'A'] + " via " + whereFrom[output-'A']);
          }
       }
@@ -60,14 +63,6 @@ public class WSPGraph extends WGraph{
       public Character next(){
          int d = p.getRootDistance();
          char output = p.dequeue();
-         /*if the vertex at the top of the priority queue is visited, remove it. If the priority queue becomes empty, 
-         then we are done with the algorithm*/ 
-         while (visited[output-'A']){
-            if (p.isEmpty()){
-               return ' ';
-            }
-            output = p.dequeue();
-         }
          // finds neighbors of the root node
          ArrayList<Character> neighbors = this.wsp.adjacencies(output);
          // pushes unvisited neighbors into priority queue
@@ -77,12 +72,16 @@ public class WSPGraph extends WGraph{
             * shortest distance in the array, add it to the priority queue and update whereFrom and shortestDistances
             * arrays..
             */
-            if ((shortestDistances[c-'A'] == 0 || distanceFromStart < shortestDistances[c-'A']))
+            if ((shortestDistances[c-'A'] == -1 || distanceFromStart < shortestDistances[c-'A']))
             { 
                p.enqueue(c, distanceFromStart);
                shortestDistances[c-'A'] = distanceFromStart;
                whereFrom[c-'A'] = output;
             }
+         }
+         // peeks at the top of the priority queue to remove any nodes that are visited
+         while (!p.isEmpty() && visited[p.getRootVertex()-'A']){
+            p.dequeue();
          }
          visited[output-'A'] = true;
          return output;

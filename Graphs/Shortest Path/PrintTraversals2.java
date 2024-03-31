@@ -55,7 +55,6 @@ public class PrintTraversals2{
       // Shortest Path
       System.out.println("Shortest Path");
       WSPGraph wsp = new WSPGraph(start, adjMatrix);
-      
       wsp.output();
 
    }
